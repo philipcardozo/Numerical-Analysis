@@ -1,0 +1,25 @@
+# Adam on Peaks - Small Network (width=32)
+# Tuned hyperparameters from HPO
+
+experiment:
+  name: "Adam on Peaks (Small-scale)"
+  seed: 42
+
+data:
+  type: peaks_classification
+  n_samples: 1000
+  n_classes: 5
+  train_fraction: 0.8
+  x_range: [-3, 3]
+  y_range: [-3, 3]
+
+model:
+  type: mlp
+  layer_sizes: [2, 32, 5]
+
+optimizer:
+  type: adam
+  max_iter: 1000
+  learning_rate: 0.09079370719928104
+  batch_size: 64
+  lr_decay: 0.99

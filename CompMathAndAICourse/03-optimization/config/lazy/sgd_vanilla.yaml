@@ -1,0 +1,28 @@
+# Vanilla SGD on Peaks - Lazy/NTK Regime (width=8192)
+# Wide network with NTK parameterization
+# Network barely changes during training, acts like linear predictor
+
+experiment:
+  name: "Vanilla SGD on Peaks (Lazy Regime)"
+  seed: 42
+
+data:
+  type: peaks_classification
+  n_samples: 1000
+  n_classes: 5
+  train_fraction: 0.8
+  x_range: [-3, 3]
+  y_range: [-3, 3]
+
+model:
+  type: mlp
+  layer_sizes: [2, 8192, 5]
+  init_type: ntk       # NTK parameterization
+  width_scale: 0.5     # 1/sqrt(width) output scaling
+
+optimizer:
+  type: sgd_vanilla
+  max_iter: 100000
+  learning_rate: 10.0
+  batch_size: 32
+  lr_decay: 1.0

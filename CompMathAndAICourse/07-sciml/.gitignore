@@ -1,0 +1,14 @@
+# Large data files (download via notebook)
+data/
+
+# Model weights (can be retrained or downloaded)
+saved_models/*.pkl
+
+# Keep indices for reproducibility
+!saved_models/data_split_indices.json
+
+# SLURM logs
+slurm_logs/
+
+# Executed notebooks from nbconvert
+*-executed.ipynb

@@ -1,0 +1,27 @@
+# Trust Region Gauss-Newton on Peaks - Mean Field Regime (width=1024)
+# GN is O(params^2), so use smaller width than Adam mean-field
+
+experiment:
+  name: "TR-GN on Peaks (Mean Field)"
+  seed: 42
+
+data:
+  type: peaks_classification
+  n_samples: 1000
+  n_classes: 5
+  train_fraction: 0.8
+  x_range: [-3, 3]
+  y_range: [-3, 3]
+
+model:
+  type: mlp
+  layer_sizes: [2, 1024, 5]
+  mean_field: true       # Freeze outer layer weights
+  init_type: meanfield   # LeCun hidden, partitioned indicator output
+  width_scale: 1.0       # 1/width output scaling
+
+optimizer:
+  type: tr_gn
+  max_iter: 30
+  atol: 1e-6
+  rtol: 1e-6

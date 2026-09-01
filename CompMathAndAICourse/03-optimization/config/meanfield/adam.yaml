@@ -1,0 +1,29 @@
+# Adam on Peaks - Mean Field Regime (width=4096)
+# Wide network with frozen outer layer weights
+# Hidden neurons behave as "particles" that evolve together
+
+experiment:
+  name: "Adam on Peaks (Mean Field)"
+  seed: 42
+
+data:
+  type: peaks_classification
+  n_samples: 1000
+  n_classes: 5
+  train_fraction: 0.8
+  x_range: [-3, 3]
+  y_range: [-3, 3]
+
+model:
+  type: mlp
+  layer_sizes: [2, 4096, 5]
+  mean_field: true       # Freeze outer layer weights
+  init_type: meanfield   # LeCun hidden, partitioned indicator output
+  width_scale: 1.0       # 1/width output scaling
+
+optimizer:
+  type: adam
+  max_iter: 30000
+  learning_rate: 50.0    # High LR appropriate for 1/width scaling
+  batch_size: 800        # Full batch
+  lr_decay: 1.0          # No decay

@@ -1,0 +1,6 @@
+metric,FNO,DeepONet
+Parameters,925948,3453440
+Test_Rel_L2_Error,0.08495330158621073,0.0914397194981575
+Training_Time_s,loaded,loaded
+Inference_Time_ms,0.9066669702529907,0.47288634777069094
+Epochs,150,300

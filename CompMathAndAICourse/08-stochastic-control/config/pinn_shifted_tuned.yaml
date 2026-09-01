@@ -1,0 +1,36 @@
+method: pinn
+problem:
+  d: 100
+  T: 1.0
+  shifted_target: true
+  terminal_cost_type: quadratic
+  seed: 42
+network:
+  architecture: resnet
+  hidden_width: 256
+  depth: 4
+solver:
+  n_steps: 20
+training:
+  learning_rate: 0.01638437957799018
+  lr_decay: 0.2995716992307621
+  lr_decay_steps: 1000
+  max_iterations: 10000
+  batch_size: 32
+  loss_weights:
+  - 1.0
+  - 1.0
+  print_freq: 200
+  val_freq: 500
+  patience: 3000
+  n_val_samples: 128
+  n_mc_samples: 10000
+output:
+  output_dir: results/pinn_shifted
+  save_history: true
+  save_model: true
+  _hpo_metadata:
+    best_value: 3251.25
+    tuned_date: '2025-12-04'
+    n_trials: 50
+    max_iter_per_trial: 2000

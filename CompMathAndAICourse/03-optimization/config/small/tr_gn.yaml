@@ -1,0 +1,25 @@
+# Trust Region Gauss-Newton on Peaks - Small Network (width=32)
+# Second-order method: competitive in small-scale settings
+# Achieves 99%+ train accuracy, 95%+ test accuracy in ~30 iterations
+
+experiment:
+  name: "Trust Region Gauss-Newton (TR-GN) on Peaks"
+  seed: 42
+
+data:
+  type: peaks_classification
+  n_samples: 1000
+  n_classes: 5
+  train_fraction: 0.8
+  x_range: [-3, 3]
+  y_range: [-3, 3]
+
+model:
+  type: mlp
+  layer_sizes: [2, 32, 5]
+
+optimizer:
+  type: tr_gn
+  max_iter: 30
+  atol: 1e-6
+  rtol: 1e-6

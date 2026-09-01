@@ -1,0 +1,43 @@
+method: neural_soc
+problem:
+  d: 100
+  T: 1.0
+  shifted_target: true
+  terminal_cost_type: quadratic
+  seed: 42
+network:
+  architecture: resnet
+  hidden_width: 256
+  depth: 5
+solver:
+  n_steps: 20
+  loss_weights:
+    w_control_objective: 7.8237664553297055
+    w_terminal_match: 24.234491447023153
+    w_terminal_gradient: 3.2204108362516735
+    w_hjb_residual: 5.769038846263591
+    w_bsde_martingale: 4.925176938188639
+training:
+  learning_rate: 0.0004475065500006156
+  lr_decay: 0.6114777430019245
+  lr_decay_steps: 1000
+  max_iterations: 5000
+  batch_size: 128
+  loss_weights:
+  - 7.8237664553297055
+  - 24.234491447023153
+  print_freq: 100
+  val_freq: 200
+  patience: 500
+  n_val_samples: 128
+  n_mc_samples: 10000
+output:
+  output_dir: results/neural_soc_shifted
+  save_history: true
+  save_model: true
+  _hpo_metadata:
+    objective: control_objective
+    best_value: 338.0555114746094
+    tuned_date: '2025-12-10'
+    n_trials: 10
+    max_iter_per_trial: 500

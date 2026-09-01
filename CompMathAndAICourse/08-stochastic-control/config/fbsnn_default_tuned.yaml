@@ -1,0 +1,38 @@
+method: fbsnn
+problem:
+  d: 100
+  T: 1.0
+  shifted_target: false
+  terminal_cost_type: log
+  seed: 42
+network:
+  architecture: resnet
+  hidden_width: 64
+  depth: 2
+solver:
+  n_steps: 30
+training:
+  learning_rate: 0.0067405137963740475
+  lr_decay: 0.3156057016002752
+  lr_decay_steps: 2000
+  max_iterations: 5000
+  batch_size: 256
+  loss_weights:
+  - 0.2987274199563841
+  - 2.860439042982462
+  - 0.3677831327192532
+  print_freq: 100
+  val_freq: 200
+  patience: 500
+  n_val_samples: 128
+  n_mc_samples: 10000
+output:
+  output_dir: results/fbsnn
+  save_history: true
+  save_model: true
+  _hpo_metadata:
+    objective: control_objective
+    best_value: 4.580574989318848
+    tuned_date: '2025-12-10'
+    n_trials: 10
+    max_iter_per_trial: 500

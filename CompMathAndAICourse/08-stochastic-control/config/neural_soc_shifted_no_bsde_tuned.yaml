@@ -1,0 +1,56 @@
+# Neural Stochastic Optimal Control - Shifted Target (NO BSDE penalty) - TUNED
+#
+# Hyperparameters tuned via Optuna HPO (50 trials, max 2000 iterations each)
+# Best trial: Trial 33, Control objective J=265.55, Suboptimality=1.9%
+#
+# Key finding: Lower learning rate (0.0009) + high lr_decay (0.923) works best
+
+method: neural_soc
+
+problem:
+  d: 100
+  T: 1.0
+  shifted_target: true
+  terminal_cost_type: quadratic
+  seed: 42
+
+network:
+  architecture: resnet
+  hidden_width: 256
+  depth: 6
+
+solver:
+  n_steps: 10
+  loss_weights:
+    w_control_objective: 97.68418099831699
+    w_terminal_match: 5.206032322544797
+    w_terminal_gradient: 2.9135383270054067
+    w_hjb_residual: 8.035439766867778
+    w_bsde_martingale: 0.0  # Disabled in this config
+
+training:
+  learning_rate: 0.0009057079870088947
+  lr_decay: 0.9226618770269122
+  lr_decay_steps: 1000
+  max_iterations: 5000
+  batch_size: 256
+  loss_weights:
+  - 97.68418099831699    # w_control_objective
+  - 5.206032322544797    # w_terminal_match
+  print_freq: 100
+  val_freq: 200
+  patience: 2000
+  n_val_samples: 128
+  n_mc_samples: 10000
+
+output:
+  output_dir: results/neural_soc_shifted_no_bsde
+  save_history: true
+  save_model: true
+  _hpo_metadata:
+    objective: control_objective
+    best_value: 265.54864501953125
+    best_suboptimality: 0.019
+    tuned_date: '2025-12-10'
+    n_trials: 50
+    max_iter_per_trial: 2000
